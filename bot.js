@@ -1,4 +1,5 @@
 const tmi = require('tmi.js');
+const lurkMessage = require('./functions/lurkMessage');
 
 // Define configuration options
 const opts = {
@@ -46,7 +47,7 @@ function onMessageHandler(target, context, msg, self) {
         console.log(`* Executed ${commandName} command`);
         break;
       case '!lurk':
-        client.say(target, `Thanks ${context.username} for lurking the channel! Always appreciate the love and support <3`);
+        client.say(target, lurkMessage.get(context.username));
         console.log(`* Executed ${commandName} command`);
         break;
       default:
