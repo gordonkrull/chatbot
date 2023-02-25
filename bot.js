@@ -28,13 +28,14 @@ function onMessageHandler(target, context, msg, self) {
     return;
   } // Ignore messages from the bot
 
-  const commandName = msg.trim();
+  const commandName = msg.trim().split(' ')[0];
+  const args = msg.trim().split(' ').slice(1);
 
   // If the command is known, let's execute it
   if (commandName.startsWith('!')) {
     switch (commandName) {
       case '!commands':
-        client.say(target, `Available commands: !commands, !dice, !discord, !lurk`);
+        client.say(target, `Available commands: !commands, !dice, !discord, !lurk, !so`);
         console.log(`* Executed ${commandName} command`);
         break;
       case '!dice':
@@ -48,6 +49,13 @@ function onMessageHandler(target, context, msg, self) {
         break;
       case '!lurk':
         client.say(target, lurkMessage.get(context.username));
+        console.log(`* Executed ${commandName} command`);
+        break;
+      case '!so':
+        args.forEach((username) => {
+          console.log(`* Shouting out ${username}`);
+          client.say(target, `/shoutout ${username}`);
+        })
         console.log(`* Executed ${commandName} command`);
         break;
       default:
