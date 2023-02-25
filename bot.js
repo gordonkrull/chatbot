@@ -1,4 +1,5 @@
 const tmi = require('tmi.js');
+const helpMessage = require('./functions/helpMessage');
 const lurkMessage = require('./functions/lurkMessage');
 
 // Define configuration options
@@ -33,9 +34,15 @@ function onMessageHandler(target, context, msg, self) {
 
   // If the command is known, let's execute it
   if (commandName.startsWith('!')) {
+    if (args[0] === "help") {
+      client.say(target, helpMessage.get(commandName))
+      return;
+    }
+
     switch (commandName) {
       case '!commands':
         client.say(target, `Available commands: !commands, !dice, !discord, !lurk, !so`);
+        client.say(target, `Type "<command> help" to see usage instructions`);
         console.log(`* Executed ${commandName} command`);
         break;
       case '!dice':
