@@ -1,6 +1,6 @@
 const tmi = require('tmi.js');
-const helpMessage = require('./functions/helpMessage');
-const lurkMessage = require('./functions/lurkMessage');
+const getHelpMessage = require('./functions/getHelpMessage');
+const getLurkMessage = require('./functions/getLurkMessage');
 
 // Define configuration options
 const opts = {
@@ -35,7 +35,7 @@ function onMessageHandler(target, context, msg, self) {
   // If the command is known, let's execute it
   if (commandName.startsWith('!')) {
     if (args[0] === "help") {
-      client.say(target, helpMessage.get(commandName))
+      client.say(target, getHelpMessage(commandName))
       return;
     }
 
@@ -55,7 +55,7 @@ function onMessageHandler(target, context, msg, self) {
         console.log(`* Executed ${commandName} command`);
         break;
       case '!lurk':
-        client.say(target, lurkMessage.get(context.username));
+        client.say(target, getLurkMessage(context.username));
         console.log(`* Executed ${commandName} command`);
         break;
       case '!so':
