@@ -1,6 +1,7 @@
 const tmi = require('tmi.js');
 const getHelpMessage = require('./functions/getHelpMessage');
 const getLurkMessage = require('./functions/getLurkMessage');
+const say = require('say')
 
 // Define configuration options
 const opts = {
@@ -63,6 +64,11 @@ function onMessageHandler(target, context, msg, self) {
           console.log(`* Shouting out ${username}`);
           client.say(target, `/shoutout ${username}`);
         })
+        console.log(`* Executed ${commandName} command`);
+        break;
+      case '!say':
+        const words = args.slice(1).join("")
+        say.speak(words)
         console.log(`* Executed ${commandName} command`);
         break;
       default:
