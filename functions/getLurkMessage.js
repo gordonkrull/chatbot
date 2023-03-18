@@ -1,4 +1,4 @@
-module.exports = (username) => {
+const getLurkMessage = (username) => {
     const messages = [
         `Thanks ${username} for lurking the channel!`,
         `${username} is hiding behind the refrigerator watching from a distance.`,
@@ -12,3 +12,5 @@ module.exports = (username) => {
     ]
     return messages[Math.floor(Math.random() * messages.length)];
 }
+
+export default getLurkMessage;

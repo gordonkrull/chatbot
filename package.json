@@ -1,5 +1,6 @@
 {
   "name": "chatbot",
+  "type": "module",
   "version": "1.0.0",
   "description": "Twitch chatbot",
   "main": "index.js",
@@ -12,6 +13,5 @@
   "dependencies": {
     "say": "^0.16.0",
     "tmi.js": "1.8.5"
-  },
-  "devDependencies": {}
+  }
 }

@@ -1,4 +1,4 @@
-module.exports = (commandName) => {
+const getHelpMessage = (commandName) => {
     const messages = {
         "!commands": "Lists all available commands",
         "!dice": "Rolls a dice, resulting in a number between 1 and 6",
@@ -14,3 +14,5 @@ module.exports = (commandName) => {
 
     return messages[commandName]
 }
+
+export default getHelpMessage;
