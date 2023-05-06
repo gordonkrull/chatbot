@@ -11,6 +11,8 @@
   "author": "Gordon Krull",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "say": "^0.16.0",
     "tmi.js": "1.8.5"
   }

@@ -2,6 +2,7 @@ import getHelpMessage from './functions/getHelpMessage.js';
 import getLurkMessage from './functions/getLurkMessage.js';
 import say from 'say';
 import rollDice from './functions/rollDice.js';
+import { format } from 'date-fns-tz';
 
 const onMessageHandler = (client) => (target, context, msg, self) => {
     if (self) {
@@ -20,7 +21,7 @@ const onMessageHandler = (client) => (target, context, msg, self) => {
 
         switch (commandName) {
             case '!commands':
-                client.say(target, `Available commands: !commands, !dice, !discord, !lurk, !so`);
+                client.say(target, `Available commands: !commands, !dice, !discord, !lurk, !so, and !time`);
                 client.say(target, `Type "<command> help" to see usage instructions`);
                 console.log(`* Executed ${commandName} command`);
                 break;
@@ -47,6 +48,10 @@ const onMessageHandler = (client) => (target, context, msg, self) => {
             case '!say':
                 const words = args.join(" ")
                 say.speak(words)
+                console.log(`* Executed ${commandName} command`);
+                break;
+            case '!time':
+                client.say(target, `The streamer's current time is ${format(new Date(), 'HH:mm:ss (zzzzz z)')}`);
                 console.log(`* Executed ${commandName} command`);
                 break;
             default:

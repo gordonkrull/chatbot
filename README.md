@@ -14,7 +14,10 @@ You must define the following environment variables before running the chatbot
 | CHANNEL       | Channel for the bot to join (typically your Twitch channel)        |
 | DISCORD_LINK  | Link to be displayed when the !discord command is invoked        |
 
-**Note:** In order for some commands to work the bot must be running locally (e.g. !say plays TTS locally)
+**Note:** 
+- In order for some commands to work the bot must be running locally (e.g. !say plays TTS locally)
+- The bot assumes the streamer's current time is the timezone where this bot is running for the purpose of the `!time` command
+
 
 ## Run
 
