@@ -3,8 +3,9 @@ import getLurkMessage from './functions/getLurkMessage.js';
 import say from 'say';
 import rollDice from './functions/rollDice.js';
 import { format } from 'date-fns-tz';
+import getWeather from './functions/getWeather.js';
 
-const onMessageHandler = (client) => (target, context, msg, self) => {
+const onMessageHandler = (client) => async (target, context, msg, self) => {
     if (self) {
         return;
     } // Ignore messages from the bot
@@ -52,6 +53,11 @@ const onMessageHandler = (client) => (target, context, msg, self) => {
                 break;
             case '!time':
                 client.say(target, `The streamer's current time is ${format(new Date(), 'HH:mm:ss (zzzzz z)')}`);
+                console.log(`* Executed ${commandName} command`);
+                break;
+            case '!weather':
+                const location = args.join(" ")
+                client.say(target, await getWeather(location));
                 console.log(`* Executed ${commandName} command`);
                 break;
             default:

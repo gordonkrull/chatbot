@@ -6,7 +6,8 @@ const getHelpMessage = (commandName) => {
         "!lurk": "Display a random lurk message for when you'll be AFK but still hanging out.",
         "!so": "Gives a shoutout to one or more channels. Please use the command followed by a space-separated list of usernames!",
         "!say": "Says whatever follows the command as a TTS message",
-        "!time": "Display the streamer's current time"
+        "!time": "Display the streamer's current time",
+        "!weather": "Displays the weather for a given location. Please put only one location after this command"
     }
 
     if (!Object.keys(messages).includes(commandName)) {
