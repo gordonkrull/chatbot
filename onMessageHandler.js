@@ -64,7 +64,7 @@ const onMessageHandler = (client) => async (target, context, msg, self) => {
                 console.log(`* Unknown command ${commandName}`);
         }
     } else {
-        console.log(`* Not a command: ${commandName}`);
+        console.log(`Chat message: ${msg.trim()}`);
     }
 }
 
