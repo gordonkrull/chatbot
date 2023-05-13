@@ -4,8 +4,15 @@ import say from 'say';
 import rollDice from './functions/rollDice.js';
 import { format } from 'date-fns-tz';
 import getWeather from './functions/getWeather.js';
+import pkg from 'pg';
+const { Client } = pkg;
 
 const onMessageHandler = (client) => async (target, context, msg, self) => {
+
+    const pgClient = new Client({
+        connectionString: process.env.DATABASE_URL,
+    });
+
     if (self) {
         return;
     } // Ignore messages from the bot
@@ -66,6 +73,10 @@ const onMessageHandler = (client) => async (target, context, msg, self) => {
     } else {
         console.log(`Chat message: ${msg.trim()}`);
     }
+
+    await pgClient.connect();
+    await pgClient.query(`INSERT INTO chat_messages (username, message) VALUES ('${context.username}', '${msg.trim()}')`);
+    await pgClient.end();
 }
 
 export default onMessageHandler;
