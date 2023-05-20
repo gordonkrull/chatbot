@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import NetworkChatMessageService from './ChatMessageService';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const networkChatMessageService = new NetworkChatMessageService()
+
 root.render(
   <React.StrictMode>
-    <App />
+    <App chatMessageService={networkChatMessageService}/>
   </React.StrictMode>
 );
 

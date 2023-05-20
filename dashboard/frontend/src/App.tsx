@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import { format } from "date-fns"
+import { ChatMessageService, ChatMessage } from './ChatMessageService';
 
-function App() {
+interface AppProps {
+  chatMessageService: ChatMessageService
+}
+
+function App({ chatMessageService }: AppProps) {
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
+  useEffect(() => {
+    chatMessageService.getAllMessages().then(messages => {
+      setChatMessages(messages)
+    })
+  }, [chatMessageService])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {chatMessages.map(message => (<div key={`${message.timestamp}${message.username}`}>
+        <span>{format(message.timestamp, "yyyy-MM-dd HH:mm:ss")}</span>
+        <span>{message.message}</span>
+        <span>{message.username}</span>
+      </div>))
+      }
     </div>
   );
 }
