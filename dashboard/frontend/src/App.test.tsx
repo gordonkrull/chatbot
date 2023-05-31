@@ -2,29 +2,30 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('displays returned chat messages', async () => {
-  const mockChatMessageService = {
-    getAllMessages: jest.fn().mockResolvedValue([
-      {
-        username: "gordon",
-        message: "hello",
-        timestamp: new Date(2012, 5, 15, 14, 13, 3)
-      },
-      {
-        username: "not gordon",
-        message: "goodbye",
-        timestamp: new Date(2012, 6, 22, 16, 55, 12)
-      }
-    ])
-  }
+describe('App', () => {
+  beforeEach(async () => {
+    const mockChatMessageService = {
+      getAllMessages: jest.fn().mockResolvedValue([
+        {
+          username: "gordon",
+          message: "hello",
+          timestamp: new Date(2012, 5, 15, 14, 13, 3)
+        }
+      ])
+    }
 
-  render(<App chatMessageService={mockChatMessageService} />);
-  expect(await screen.findByText("gordon")).toBeInTheDocument();
-  expect(screen.getByText("hello")).toBeInTheDocument();
-  expect(screen.getByText("2012-06-15 14:13:03")).toBeInTheDocument();
+    render(<App chatMessageService={mockChatMessageService} />);
 
-  expect(screen.getByText("not gordon")).toBeInTheDocument();
-  expect(screen.getByText("goodbye")).toBeInTheDocument();
-  expect(screen.getByText("2012-07-22 16:55:12")).toBeInTheDocument();
-});
+    // wait for data load before starting tests
+    expect(await screen.findByText("gordon")).toBeInTheDocument();
+  })
 
+
+  test('displays application header', () => {
+    expect(screen.getByText("Chatbot Dashboard")).toBeInTheDocument();
+  })
+
+  test('displays ChatMessageScreen', () => {
+    expect(screen.getByText("hello")).toBeInTheDocument();
+  })
+})
