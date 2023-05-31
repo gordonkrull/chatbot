@@ -1,0 +1,32 @@
+@import '../colours.scss';
+
+.chatMessageScreen {
+    padding: 2rem 0;
+
+    .chatMessageTable {
+
+        .headerRow {
+            background-color: lightgray;
+            font-weight: 600;
+        }
+
+        .chatMessageRow { 
+            span {
+                flex: 1
+            }
+
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+
+            &:nth-child(even) {
+                background-color: rgba(223, 218, 218, 0.7);
+            }
+
+            &:nth-child(odd):not(.headerRow)  {
+                background-color: rgba($primaryblue, .2) ;
+            }
+        }
+    }
+
+}

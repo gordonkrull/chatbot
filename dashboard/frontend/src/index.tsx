@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import NetworkChatMessageService from './ChatMessageService';
+import NetworkChatMessageService from './chat-messages/ChatMessageService';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
