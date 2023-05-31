@@ -4,6 +4,8 @@
     padding: 2rem 0;
 
     .chatMessageTable {
+        border-radius: 0.5rem;
+        overflow: hidden;
 
         .headerRow {
             background-color: lightgray;
